@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+/* ===========================
+   NovaCart Design System
+=========================== */
+
+:root {
+  /* Brand Colors */
+  --primary: #2563EB;
+  --secondary: #4F46E5;
+  --accent: #F97316;
+
+  /* UI Colors */
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --text: #0F172A;
+
+  --success: #22C55E;
+  --error: #EF4444;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background:var(--background);
+    color:var(--text);
+    font-family:"Inter",sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family:"Poppins",sans-serif;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
