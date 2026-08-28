@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   LayoutGrid,
@@ -90,6 +90,7 @@ const brandSuggestions = [
 
 const ShopSidebar = ({ filters, setFilters, clearFilters }) => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const currentCategory = searchParams.get("category");
   const [brandSearch, setBrandSearch] = useState(filters.brand || "");
@@ -150,7 +151,7 @@ const ShopSidebar = ({ filters, setFilters, clearFilters }) => {
             <button
               type="button"
               onClick={() => {
-                window.location.href = "/shop";
+                navigate("/shop");
               }}
               className={`
                 w-full
@@ -185,7 +186,7 @@ const ShopSidebar = ({ filters, setFilters, clearFilters }) => {
                   type="button"
                   key={category.value}
                   onClick={() => {
-                    window.location.href = `/shop?category=${category.value}`;
+                    navigate(`/shop?category=${category.value}`);
                   }}
                   className={`
                     w-full
