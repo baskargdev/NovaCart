@@ -1,10 +1,14 @@
 # NovaCart
 
-NovaCart is a full-stack MERN e-commerce application designed to provide a modern, responsive, and user-friendly online shopping experience.
+NovaCart is a full-stack MERN e-commerce application built to provide a modern, responsive, and user-friendly online shopping experience.
 
-The project includes a customer-facing shopping application and a dedicated admin dashboard for managing products, orders, users, reviews, and other store operations.
+The application includes a customer-facing shopping platform and a dedicated admin dashboard for managing products, orders, users, reviews, contact messages, and store operations.
 
-## Features
+## 🌐 Live Demo
+
+**Live Website:** https://novacart-frontend-y10y.onrender.com
+
+## ✨ Features
 
 ### Customer Features
 
@@ -49,7 +53,7 @@ The project includes a customer-facing shopping application and a dedicated admi
 - Contact message management
 - Store statistics and dashboard information
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -76,7 +80,7 @@ The project includes a customer-facing shopping application and a dedicated admi
 - Multer
 - Razorpay
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 NovaCart/
@@ -87,14 +91,11 @@ NovaCart/
 │   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── uploads/
-│   ├── .env
 │   ├── .gitignore
 │   ├── package.json
 │   └── server.js
 │
 ├── frontend/
-│   ├── public/
 │   ├── src/
 │   │   ├── admin/
 │   │   ├── api/
@@ -103,7 +104,6 @@ NovaCart/
 │   │   ├── context/
 │   │   ├── data/
 │   │   └── pages/
-│   ├── .env
 │   ├── .gitignore
 │   ├── package.json
 │   └── vite.config.js
