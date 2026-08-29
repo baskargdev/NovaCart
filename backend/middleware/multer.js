@@ -1,10 +1,17 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
+
+const uploadDir = path.join(process.cwd(), "uploads");
+
+// Make sure uploads folder exists
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    //callback function
-    cb(null, "uploads/");
+    cb(null, uploadDir);
   },
 
   filename: (req, file, cb) => {
@@ -13,7 +20,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  // No file provided
   if (!file) {
     return cb(null, true);
   }
