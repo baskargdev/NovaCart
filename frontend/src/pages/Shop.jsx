@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 
 import axiosInstance from "../api/axiosInstance";
@@ -25,6 +25,7 @@ const categories = [
 
 const Shop = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const category = searchParams.get("category");
   const search = searchParams.get("search");
@@ -479,7 +480,7 @@ const Shop = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => {
-                      window.location.href = "/shop";
+                      navigate("/shop");
                     }}
                     className={`border rounded-xl px-3 py-2.5 text-sm capitalize ${
                       !category
@@ -494,7 +495,7 @@ const Shop = () => {
                     <button
                       key={itemCategory}
                       onClick={() => {
-                        window.location.href = `/shop?category=${itemCategory}`;
+                        navigate(`/shop?category=${itemCategory}`);
                       }}
                       className={`border rounded-xl px-3 py-2.5 text-sm capitalize ${
                         category === itemCategory
