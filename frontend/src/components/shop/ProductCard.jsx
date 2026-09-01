@@ -1,16 +1,26 @@
 import { useState } from "react";
+
 import { Heart, ShoppingCart, Star } from "lucide-react";
+
 import { Link, useNavigate } from "react-router-dom";
+
 import { toast } from "react-toastify";
+
 import axiosInstance from "../../api/axiosInstance";
+
 import { useAuth } from "../../context/AuthContext";
+
 import { useWishlist } from "../../context/WishlistContext";
+
 import { useCart } from "../../context/CartContext";
 
 const ProductCard = ({ product, isNew = false }) => {
   const { token } = useAuth();
+
   const { toggleWishlist, isWishlisted } = useWishlist();
+
   const { fetchCart } = useCart();
+
   const navigate = useNavigate();
 
   const [addingToCart, setAddingToCart] = useState(false);
@@ -55,9 +65,7 @@ const ProductCard = ({ product, isNew = false }) => {
         toast.success("Product added to cart!");
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Failed to add product.",
-      );
+      toast.error(error.response?.data?.message || "Failed to add product.");
     } finally {
       setAddingToCart(false);
     }
@@ -90,7 +98,9 @@ const ProductCard = ({ product, isNew = false }) => {
         h-full
       "
     >
+      {/* Product Image */}
       <div className="relative bg-[#F8F8FA] overflow-hidden">
+        {/* NEW / DISCOUNT */}
         {isNew ? (
           <span
             className="
@@ -133,11 +143,10 @@ const ProductCard = ({ product, isNew = false }) => {
           )
         )}
 
+        {/* Wishlist */}
         <button
           onClick={handleWishlist}
-          aria-label={
-            wishlisted ? "Remove from wishlist" : "Add to wishlist"
-          }
+          aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
           className="
             absolute
             top-3
@@ -167,6 +176,7 @@ const ProductCard = ({ product, isNew = false }) => {
           />
         </button>
 
+        {/* Product Image */}
         <Link to={`/product/${product._id}`}>
           <div className="h-52 sm:h-56 w-full overflow-hidden">
             <img
@@ -185,12 +195,11 @@ const ProductCard = ({ product, isNew = false }) => {
         </Link>
       </div>
 
+      {/* Product Content */}
       <div className="flex flex-col flex-1 p-4">
-        <Link
-          to={`/product/${product._id}`}
-          className="flex flex-col flex-1"
-        >
-          <div className="min-h-[24px]">
+        <Link to={`/product/${product._id}`} className="flex flex-col flex-1">
+          {/* Brand */}
+          <div>
             <span
               className="
                 inline-flex
@@ -211,6 +220,7 @@ const ProductCard = ({ product, isNew = false }) => {
             </span>
           </div>
 
+          {/* Product Name */}
           <h3
             className="
               font-semibold
@@ -227,95 +237,97 @@ const ProductCard = ({ product, isNew = false }) => {
             {product.name}
           </h3>
 
+          {/* Description */}
           <p
             className="
               text-xs
               text-gray-500
-              mt-1.5
+              mt-1
               line-clamp-1
-              min-h-[18px]
             "
           >
             {product.shortDescription || "Premium Quality Product"}
           </p>
 
+          {/* Rating + Reviews */}
           <div
             className="
               flex
               items-center
               gap-1.5
-              mt-3
-              min-h-[22px]
+              mt-1.5
+              whitespace-nowrap
+              overflow-hidden
             "
           >
             <Star
               size={14}
-              className="fill-yellow-400 text-yellow-400"
+              className="fill-yellow-400 text-yellow-400 shrink-0"
             />
 
-            <span className="text-sm font-semibold text-[#1F1F2E]">
+            <span className="text-sm font-semibold text-[#1F1F2E] shrink-0">
               {product.rating}
             </span>
 
-            <span className="text-xs text-gray-500">
+            <span className="text-[11px] sm:text-xs text-gray-500 truncate">
               ({product.reviews} Reviews)
             </span>
           </div>
 
           {/* Price */}
-          <div
-            className="
-              flex
-              flex-wrap
-              items-center
-              gap-2
-              mt-3
-              min-h-[34px]
-            "
-          >
-            <span className="text-lg sm:text-xl font-bold text-[#6D4AFF]">
-              {formatCurrency(product.price)}
-            </span>
+          <div className="sm:mt-2">
+            {/* Current Price */}
+            <div>
+              <span className="text-sm sm:text-xl font-bold text-[#6D4AFF]">
+                {formatCurrency(product.price)}
+              </span>
+            </div>
 
+            {/* Old Price + Discount */}
             {product.oldPrice > 0 && (
-              <span className="text-xs sm:text-sm text-gray-400 line-through">
-                {formatCurrency(product.oldPrice)}
-              </span>
-            )}
+              <div className="flex items-center gap-2 mt-1 whitespace-nowrap">
+                <span className="text-xs sm:text-sm text-gray-400 line-through">
+                  {formatCurrency(product.oldPrice)}
+                </span>
 
-            {discount > 0 && (
-              <span
-                className="
-                  bg-red-50
-                  text-red-500
-                  text-[10px]
-                  sm:text-xs
-                  font-semibold
-                  px-2
-                  py-1
-                  rounded-full
-                "
-              >
-                {discount}% OFF
-              </span>
+                {discount > 0 && (
+                  <span
+                    className="
+            bg-red-50
+            text-red-500
+            text-[10px]
+            sm:text-xs
+            font-semibold
+            px-2
+            py-1
+            rounded-full
+            whitespace-nowrap
+          "
+                  >
+                    {discount}% OFF
+                  </span>
+                )}
+              </div>
             )}
           </div>
 
-          <div className="mt-3 min-h-[22px]">
+          {/* Stock */}
+          <div className="mt-1 mb-1">
             {product.stock > 0 ? (
               <div className="flex items-center gap-1.5 text-green-600 text-xs sm:text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-green-500" />
+                <span className="w-2 h-2 rounded-full bg-green-500 shrink-0" />
                 In Stock
               </div>
             ) : (
               <div className="flex items-center gap-1.5 text-red-500 text-xs sm:text-sm font-medium">
-                <span className="w-2 h-2 rounded-full bg-red-500" />
+                <span className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
                 Out of Stock
               </div>
             )}
           </div>
         </Link>
 
+        {/* Add to Cart */}
         <button
           onClick={handleAddToCart}
           disabled={addingToCart || product.stock <= 0}
