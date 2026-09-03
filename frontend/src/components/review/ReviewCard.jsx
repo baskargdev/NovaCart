@@ -65,7 +65,6 @@ const ReviewCard = ({ review, fetchReviews, onEdit }) => {
         flex-col
       "
     >
-      /* ----- HEADER ----- */
       <div className="flex items-start justify-between gap-3">
         {/* User */}
         <div className="flex items-center gap-3 min-w-0">
