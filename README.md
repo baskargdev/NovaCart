@@ -6,11 +6,15 @@ The application includes a customer-facing shopping platform and a dedicated adm
 
 ## 🌐 Live Demo
 
-**Live Website:** https://novacart-frontend-y10y.onrender.com
+**Live Website:**  
+https://nova-cart-ruby.vercel.app/
+
+**GitHub Repository:**  
+https://github.com/baskargdev/NovaCart
 
 ## ✨ Features
 
-### Customer Features
+### 👤 Customer Features
 
 - User registration and login
 - JWT-based authentication
@@ -38,7 +42,7 @@ The application includes a customer-facing shopping platform and a dedicated adm
 - Change password
 - Responsive design for desktop and mobile
 
-### Admin Features
+### 🛠️ Admin Features
 
 - Admin authentication
 - Admin dashboard
@@ -80,6 +84,16 @@ The application includes a customer-facing shopping platform and a dedicated adm
 - Multer
 - Razorpay
 
+## ☁️ Deployment
+
+| Component | Platform |
+|-----------|----------|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | MongoDB Atlas |
+| Image Storage | Cloudinary |
+| Payment Gateway | Razorpay |
+
 ## 📁 Project Structure
 
 ```text
@@ -106,6 +120,7 @@ NovaCart/
 │   │   └── pages/
 │   ├── .gitignore
 │   ├── package.json
+│   ├── vercel.json
 │   └── vite.config.js
 │
 └── README.md
